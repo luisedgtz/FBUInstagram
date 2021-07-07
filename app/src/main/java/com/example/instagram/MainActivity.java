@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
+        //Setting default selected item and fragment
         bottomNavigationView.setSelectedItemId(R.id.action_home);
         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment1).commit();
 
