@@ -21,7 +21,9 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.Instagram">
-        <activity android:name=".SignUpActivity"></activity>
+        <activity
+            android:name=".SignUpActivity"
+            android:theme="@style/Theme.NoActionBar"></activity>
         <activity android:name=".PostDetailsActivity" />
 
         <provider
@@ -34,7 +36,9 @@
                 android:resource="@xml/fileprovider" />
         </provider>
 
-        <activity android:name=".LoginActivity">
+        <activity
+            android:theme="@style/Theme.NoActionBar"
+            android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
