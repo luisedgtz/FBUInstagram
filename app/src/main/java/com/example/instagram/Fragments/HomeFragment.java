@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.instagram.Adapters.PostsAdapter;
+import com.example.instagram.EndlessRecyclerViewScrollListener;
 import com.example.instagram.Models.Post;
 import com.example.instagram.R;
 import com.parse.FindCallback;
@@ -29,6 +30,8 @@ public class HomeFragment extends Fragment {
     protected PostsAdapter adapter;
     protected List<Post> allPosts;
     private SwipeRefreshLayout swipeContainer;
+
+    private EndlessRecyclerViewScrollListener scrollListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class HomeFragment extends Fragment {
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                adapter.clear();
                 queryPosts();
             }
         });
@@ -56,7 +60,16 @@ public class HomeFragment extends Fragment {
         adapter = new PostsAdapter(getContext(), allPosts);
 
         rvPosts.setAdapter(adapter);
-        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        rvPosts.setLayoutManager(linearLayoutManager);
+
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                loadNextData();
+            }
+        };
+        rvPosts.addOnScrollListener(scrollListener);
         //Get posts
         queryPosts();
     }
@@ -85,6 +98,35 @@ public class HomeFragment extends Fragment {
                 adapter.clear();
                 adapter.addAll(posts);
                 swipeContainer.setRefreshing(false);
+            }
+        });
+    }
+
+    private void loadNextData() {
+        // specify what type of data we want to query - Post.class
+        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+        // include data referred by user key
+        query.include(Post.KEY_USER);
+        // limit query to latest 20 items\
+        query.whereLessThan("createdAt", allPosts.get(allPosts.size()-1).getCreatedAt());
+        query.setLimit(20);
+        // order posts by creation date (newest first)
+        query.addDescendingOrder("createdAt");
+        // start an asynchronous call for posts
+        query.findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> posts, ParseException e) {
+                //check for errors
+                if (e != null) {
+                    Log.e(TAG, "Issue with getting posts", e);
+                    return;
+                }
+                for (Post post : posts) {
+                    Log.i(TAG, "New Post: " + post.getDescription() + "username: " + post.getUser().getUsername());
+                }
+                List<Post> newPosts = posts;
+                Log.i(TAG, Integer.toString(allPosts.size()));
+                adapter.addAll(newPosts);
             }
         });
     }
