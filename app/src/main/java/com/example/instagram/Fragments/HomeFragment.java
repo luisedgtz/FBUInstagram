@@ -1,4 +1,4 @@
-package com.example.instagram;
+package com.example.instagram.Fragments;
 
 import android.os.Bundle;
 
@@ -12,6 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.instagram.Adapters.PostsAdapter;
+import com.example.instagram.Models.Post;
+import com.example.instagram.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;

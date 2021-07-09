@@ -8,6 +8,9 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.instagram.Fragments.HomeFragment;
+import com.example.instagram.Fragments.NewPostFragment;
+import com.example.instagram.Fragments.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.example.instagram;
+package com.example.instagram.Fragments;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -23,19 +23,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.parse.FindCallback;
+import com.example.instagram.Helpers.BitmapScaler;
+import com.example.instagram.Helpers.DeviceDimensionsHelper;
+import com.example.instagram.Models.Post;
+import com.example.instagram.R;
 import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
 
 public class NewPostFragment extends Fragment {
 
