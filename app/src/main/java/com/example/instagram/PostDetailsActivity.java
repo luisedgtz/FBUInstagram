@@ -1,9 +1,13 @@
 package com.example.instagram;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +25,7 @@ public class PostDetailsActivity extends AppCompatActivity {
     TextView tvUsername;
     ImageView ivPostImage;
     TextView tvCreatedAt;
+    ImageView ivUser;
     TextView tvDescriptionDetails;
 
     public static final String TAG = "PostDetailsActivity";
@@ -30,10 +35,18 @@ public class PostDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_details);
 
+        //Setting custom action bar
+        ActionBar actionBar = getSupportActionBar();
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflater.inflate(R.layout.actionbar, null);
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(v);
+
         post = (Post) Parcels.unwrap(getIntent().getParcelableExtra(Post.class.getSimpleName()));
         tvUsername = findViewById(R.id.tvUserNameDetails);
         ivPostImage = findViewById(R.id.ivImageDetails);
         tvCreatedAt = findViewById(R.id.tvCreatedAt);
+        ivUser = findViewById(R.id.ivProfilePicDetails);
         tvDescriptionDetails = findViewById(R.id.tvDescriptionDetails);
 
         tvUsername.setText(post.getUser().getUsername());
@@ -43,8 +56,13 @@ public class PostDetailsActivity extends AppCompatActivity {
         tvCreatedAt.setText(timeAgo);
         tvDescriptionDetails.setText(post.getDescription());
         ParseFile image = post.getImage();
+        ParseFile userImage = post.getUser().getParseFile("profile_pic");
         if (image != null) {
             Glide.with(this).load(image.getUrl()).into(ivPostImage);
+        }
+
+        if (userImage != null) {
+            Glide.with(this).load(userImage.getUrl()).circleCrop().into(ivUser);
         }
     }
 }

@@ -22,8 +22,6 @@ import org.parceler.Parcels;
 
 import java.util.List;
 
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
-
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
     private Context context;
     private List<Post> posts;
@@ -55,7 +53,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Post post = posts.get(position);
         holder.bind(post);
-
     }
 
     @Override
@@ -71,10 +68,10 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvUsername = itemView.findViewById(R.id.tvUserName);
-            ivImage = itemView.findViewById(R.id.ivPostImageFeed);
-            tvDescription = itemView.findViewById(R.id.tvDescription);
-            ivProfilePic = itemView.findViewById(R.id.ivProfilePic);
+            tvUsername = itemView.findViewById(R.id.tvUserNameDetails);
+            ivImage = itemView.findViewById(R.id.ivImageDetails);
+            tvDescription = itemView.findViewById(R.id.tvDescriptionDetails);
+            ivProfilePic = itemView.findViewById(R.id.ivProfilePicDetails);
             itemView.setOnClickListener(this);
         }
 
@@ -88,10 +85,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
             }
-            int margin = 0;
-            int radius = 100;
             if (imageUser != null) {
-                Glide.with(context).load(imageUser.getUrl()).centerCrop().transform(new RoundedCornersTransformation(radius, margin)).into(ivProfilePic);
+                Glide.with(context).load(imageUser.getUrl()).circleCrop().into(ivProfilePic);
             }
         }
 

@@ -39,7 +39,7 @@ import java.io.IOException;
 public class NewPostFragment extends Fragment {
 
     public static final String TAG = "NewPostFragment";
-    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
+    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 150;
     private EditText etDescription;
     private Button btnCaptureImage;
     private ImageView ivPostImage;

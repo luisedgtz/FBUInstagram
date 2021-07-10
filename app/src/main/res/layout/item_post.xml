@@ -7,7 +7,7 @@
     android:layout_marginTop="10dp">
 
     <ImageView
-        android:id="@+id/ivProfilePic"
+        android:id="@+id/ivProfilePicDetails"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentStart="true"
@@ -17,22 +17,22 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tvUserName"
+        android:id="@+id/tvUserNameDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
-        android:layout_toEndOf="@+id/ivProfilePic"
+        android:layout_toEndOf="@+id/ivProfilePicDetails"
         android:text="TextView"
         android:textColor="#000000"
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/ivPostImageFeed"
+        android:id="@+id/ivImageDetails"
         android:layout_width="1080px"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ivProfilePic"
+        android:layout_below="@+id/ivProfilePicDetails"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="0dp"
@@ -41,7 +41,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tvDescription"
+        android:id="@+id/tvDescriptionDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView7"
@@ -54,7 +54,7 @@
         android:id="@+id/imageView9"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_below="@+id/ivPostImageFeed"
+        android:layout_below="@+id/ivImageDetails"
         android:layout_marginStart="15dp"
         android:layout_marginTop="12dp"
         android:layout_toEndOf="@+id/imageView8"
@@ -74,7 +74,7 @@
         android:id="@+id/imageView7"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_below="@+id/ivPostImageFeed"
+        android:layout_below="@+id/ivImageDetails"
         android:layout_alignParentStart="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
@@ -85,7 +85,7 @@
         android:id="@+id/imageView8"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_below="@+id/ivPostImageFeed"
+        android:layout_below="@+id/ivImageDetails"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/imageView7"
@@ -95,7 +95,7 @@
         android:id="@+id/imageView10"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_below="@+id/ivPostImageFeed"
+        android:layout_below="@+id/ivImageDetails"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
